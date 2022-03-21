@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="icon" href="data:,">
+        <title>3d_iphone_final.gh</title>
+        <style>
+            body {
+                margin: 0;
+                font-family: Arial, Helvetica, sans-serif;
+                background-image:url(asanoha.jpg)
+            }
+            canvas { width: 100%; height: 100%; }
+            input[type=range] { width: 100%; }
+            #container { position: relative; }
+            #container canvas, #overlay { position: absolute; }
+            #overlay { 
+              z-index: 1; 
+              width: 25%; 
+              float: left; 
+              margin-right: 70%; 
+              background-color:beige;
+              border: solid;
+              border-width: 0.1em;
+              border-color: black; 
+            }
+            #overlay div { padding: 2px; }
+            #loader {
+                border: 5px solid #f3f3f3; /* Light grey */
+                border-top: 5px solid #3d3d3d; /* Grey */
+                border-radius: 50%;
+                width: 40px;
+                height: 40px;
+                animation: spin 1s linear infinite;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                z-index: 2;
+            }
+            @keyframes spin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+            }
+            
+            input[type="range"] {
+              -webkit-appearance: none; /* 🚩これ無しだとスタイルがほぼ全く反映されないので注意 */
+              appearance: none;
+              cursor: pointer; /* カーソルを分かりやすく */
+              outline: none; /* スライダーのアウトラインは見た目がキツイので消す */
+              height: 2px; /* バーの高さ */
+              width: 95%; /* バーの幅 */
+              
+              border-radius: 10px; /* バーの両端の丸み */
+              border: solid 0.3px #8dffca; /* バー周囲の線 */
+            }
+            input[type="range"]::-webkit-slider-thumb {
+                -webkit-appearance: none;
+                height: 10px; /* バーの高さ */
+                width: 10px; /* バーの幅 */
+                border-radius: 100%;
+                background: #5a5a5a; /* バーの背景色 */
+              }              
+            p {
+              margin-block-start: 2px;
+              margin-block-end: 2px;
+            }
+            .red{
+              background-color: red;
+            }
+            .green{
+              background-color: green;
+            }
+            .blue{
+              background-color: blue;
+            }
+            .bar{
+              background-color: #5a5a5a;
+            }
+            
+        </style>
+    </head>
+    <body>
+        <div id="loader"></div> 
+        <div id="container">
+            <div id="overlay">
+                <div id="color_top">
+                  <p>color for top</p>
+                  <div>
+                    <label for="red top">red top</label>
+                    <input class="red" type="range" id="red top" min="0" max="255" value="255" step="1">
+                  </div>
+                  <div>
+                    <label for="green top">green top</label>
+                    <input class="green" type="range" id="green top" min="0" max="255" value="255" step="1">
+                  </div>
+                  <div>
+                    <label for="blue top">blue top</label>
+                    <input class="blue" type="range" id="blue top" min="0" max="255" value="255" step="1">
+                  </div>
+                </div>
+                <div id="color_base">
+                  <p>color for base</p>
+                  <div>
+                    <label for="red">red</label>
+                    <input class="red" type="range" id="red" min="0" max="255" value="255" step="1">
+                  </div>
+                  <div>
+                    <label for="green">green</label>
+                    <input class="green" type="range" id="green" min="0" max="255" value="255" step="1">
+                  </div>
+                  <div>
+                    <label for="blue">blue</label>
+                    <input class="blue" type="range" id="blue" min="0" max="255" value="255" step="1">
+                  </div>
+                </div>
+                
+                <div>
+                  <label for="rotation">rotation</label>
+                  <input class="bar" type="range" id="rotation" min="1" max="179" value="5" step="1">
+                </div>
+                <div>
+                  <label for="size">size</label>
+                  <input class="bar" type="range" id="size" min="5" max="20" value="10" step="1">
+                </div>
+                <div>
+                  <label for="height">height</label>
+                  <input class="bar" type="range" id="height" min="1" max="30" value="20" step="1">
+                </div>
+                <div>
+                  <label for="make 3D">make 3D</label>
+                  <input type="checkbox" id="make 3D" >
+                </div>
+                <div><button id="downloadButton" disabled>Download</button></div>
+            </div>
+        </div>
+
+        <script type="module" src="script.js"></script>
+    </body>
+</html>
